@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PyMart Scatter Plots</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://MomentJS.com/downloads/moment.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+  <script src="../conta/table/data.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="../conta/table/style.css">
+  <nav class="navbar navbar-default">
+		<div class="container-fluid">
+		  <div class="navbar-header">
+			<a class="navbar-brand" href="../conta/table/index.html">Search Engine for Data
+			  <img class="nav-ufo" src="../conta/table/Pymark.jpg">
+			</a>
+		  </div>
+			<div class="navbar-header">
+			<a class="navbar-brand" href="index.html"> Scatter Plots
+  
+			</a>
+		  </div>
+			<div class="navbar-header">
+			<a class="navbar-brand" href="model.html">Linear Regression Model
+  
+			</a>
+		  </div>
+		</div>
+	  </nav>
+</head>
+<body>
+
+  <p>
+		<div class="form-group">
+				<label for="inputName">Initial date</label>
+					<input type="date" class="form-control" id="inputFecha" name="petFecha" data-date-inline-picker="true" />
+		
+			<label for="inputName">End date</label>
+			<input type="date" class="form-control" id="outputFecha" name="petFecha" data-date-inline-picker="true" />
+	</div>
+	<select id="oferta1" onchange="this.value" >
+		<option disable="" value="">Branch</option>
+<option value="G">G</option>
+<option value="A">A</option>
+<option value="P">P</option>
+<option value="C">C</option>
+<option value="IG">IG</option>
+<option value="IA">IA</option>
+<option value="IV">IV</option>
+<option value="IP">IP</option>
+<option value="IC">IC</option>
+
+	</select>
+	<select id="oferta2" onchange="this.value" >
+		<option disable="" value="">Shift</option>
+<option value="N">N</option>
+<option value="C">C</option>
+<option value="X">X</option>
+<option value="M">M</option>
+<option value="V">V</option>
+<option value="O">O</option>
+<option value="Q">Q</option>
+<option value="I">I</option>
+<option value="E">E</option>
+<option value="F">F</option>
+<option value="S">S</option>
+<option value="P">P</option>
+<option value="PA">PA</option>
+<option value="G">G</option>
+<option value="A">A</option>
+<option value="T">T</option>
+<option value="B">B</option>
+<option value="V1">V1</option>
+<option value="D">D</option>
+<option value="BN">BN</option>
+<option value="OM">OM</option>
+<option value="AO">AO</option>
+<option value="AG">AG</option>
+<option value="AB">AB</option>
+<option value="AB1">AB1</option>
+<option value="TC">TC</option>
+<option value="BMER30INT">BMER30INT</option>
+<option value="BMER30">BMER30</option>
+<option value="BFLIQ">BFLIQ</option>
+<option value="IA">IA</option>
+<option value="BFLIQINT">BFLIQINT</option>
+<option value="BGUBINT">BGUBINT</option>
+<option value="SO">SO</option>
+<option value="XINT">XINT</option>
+<option value="BGUB">BGUB</option>
+<option value="II">II</option>
+<option value="SL">SL</option>
+<option value="IM">IM</option>
+<option value="Y">Y</option>
+<option value="SB">SB</option>
+<option value="SA">SA</option>
+<option value="AY">AY</option>
+<option value="OMRVINTNEG">OMRVINTNEG</option>
+<option value="OMRV">OMRV</option>
+<option value="OMINT">OMINT</option>
+<option value="IE">IE</option>
+<option value="IC">IC</option>
+<option value="IV">IV</option>
+<option value="IVD">IVD</option>
+<option value="IN">IN</option>
+<option value="IU">IU</option>
+<option value="SJ">SJ</option>
+<option value="AI">AI</option>
+<option value="SAI">SAI</option>
+<option value="A1">A1</option>
+<option value="Z">Z</option>
+<option value="Z.">Z.</option>
+<option value="H">H</option>
+<option value="W">W</option>
+<option value="U">U</option>
+<option value="R">R</option>
+<option value="L">L</option>
+<option value="IX">IX</option>
+<option value="IJ">IJ</option>
+<option value="IS">IS</option>
+<option value="ID">ID</option>
+<option value="IO">IO</option>
+<option value="IK">IK</option>
+<option value="IB">IB</option>
+<option value="IT">IT</option>
+<option value="IP">IP</option>
+
+	</select>
+	<select id="oferta3" onchange="this.value" >
+		<option disable="" value="">transaction</option>
+		<option value=''></option>
+		<option value=''></option>
+		<option value=''></option>
+		<option value=''></option>
+	</select>
+    <select id="respuesta1" onchange="this.value" >
+	<option disable="debit" value="debit">debit</option>
+        <option value="debit">debit</option>
+        <option value="credit">credit</option>
+   </select>
+
+    <select id="respuesta2" onchange="this.value" >
+	<option disable="credit" value="credit">credit</option>
+        <option value="debit">debit</option>
+        <option value="credit">credit</option>
+    </select>
+ 
+
+
+
+    <button name="App" value="submit" onclick="updateInfo();" >Submit</button>
+  </p>
+
+
+
+  <div id="plot"></div>
+<div id="plot1"></div>
+<div id="plot2"></div>
+<div id="plot3"></div>
+<div id="plot4"></div>
+<div id="plot5"></div>
+<div id="plot6"></div>
+<div id="plot7"></div>
+<div id="plot8"></div>
+<div id="plot9"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+
+  <script src="plots.js"></script>
+  <!--<iframe id="processor" src="index2.html" frameborder="0" allowfullscreen
+  style="position:absolute;top:70%;left:0;width:100%;height:100%;"></iframe>
+  <iframe id="processor" src="index3.html" frameborder="0" allowfullscreen
+  style="position:absolute;top:140%;left:0;width:100%;height:100%;"></iframe>-->
+</body>
+</html>
