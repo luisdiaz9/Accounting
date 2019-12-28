@@ -21,7 +21,7 @@ var new_table1 = new_table0.filter(info => info.datetime<= new Date(dateInputTex
 if(Object.entries(new_table1).length===0 ){
   new_table1 = new_table0
 }
-//debugger
+debugger
 
 
       //displayData(new_table1);
@@ -46,10 +46,10 @@ if(Object.entries(new_table1).length===0 ){
 
       var x1 = [], y1 = [];
       var x2 = [], y2 = [];
-      var x3 = [], y3 = [], totals3={};
-      var x3a = [], y3a = [], totals3a={};
-      var x1a = [], y1a = [], totals1={},totals1a={},totals1b=[],totals1c=[],totals1d=[],totals1e=[], totals1f=[], totals1g=[], totals1h=[], totals1i=[], totals1j=[], totals1k=[], totals1l=[], totals1m=[];
-      var x2a = [], y2a = [], totals2={},totals2a={},totals2b=[],totals2c=[],totals2d=[],totals2e=[], totals2f=[], totals2g=[], totals2h=[], totals2i=[], totals2j=[], totals2k=[], totals2l=[], totals2m=[];
+      var x3 = [], y3 = [], totals3=[];
+      var x3a = [], y3a = [], totals3a=[];
+      var x1a = [], y1a = [], totals1={},totals1a={},totals1b=[],totals1c=[],totals1d=[],totals1e=[];
+      var x2a = [], y2a = [], totals2={},totals2a={},totals2b=[],totals2c=[],totals2d=[],totals2e=[];
       var sub1a = 0, sub2a = 0;
       var x1b = [], y1b = [];
       var x2b = [], y2b = [];
@@ -65,9 +65,7 @@ if(Object.entries(new_table1).length===0 ){
       var sub1e = 0, sub2e = 0;
       var sub1f = 0, sub2f = 0;
       var sub1g = 0, sub2g = 0;
-      var sub1h = 0, sub2h = 0;
-      var aux1 = 0, aux2 = 0, aux3 = 0;
-      var aux4 = 0, aux5 = 0, aux6 = 0, max1 = 0, max2=0;
+      var aux1 = 1, aux2 = 1;
 //debugger
 new_table5.forEach(function(item){
   totals1a[item] = (totals1a[item] || 0) + parseFloat(item[input1.property("value")]);
@@ -78,7 +76,13 @@ new_table5.forEach(function(item){
   if(Object.values(totals2) < parseFloat(item[input2.property("value")])){ 
     totals2[item] = parseFloat(item[input2.property("value")]);
   }
-
+  if(Object.values(totals3) < parseFloat(item[input2.property("value")])-parseFloat(item[input1.property("value")])){ 
+    totals3[item] =parseFloat(item[input2.property("value")])-parseFloat(item[input1.property("value")]);
+  }
+  if(Object.values(totals3a) < parseFloat(item[input1.property("value")])-parseFloat(item[input2.property("value")])){ 
+    totals3a[item] =parseFloat(item[input1.property("value")])-parseFloat(item[input2.property("value")]);
+  }
+        var x3 = [], y3 = [], totals3=[];
   sub1e= -parseFloat(Object.values(totals2a)[0]);
   sub2e= -parseFloat(Object.values(totals1a)[0]);
 
@@ -93,50 +97,42 @@ new_table5.forEach(function(item){
       totals2d[0] = "";
       totals1e[0] = "";
       totals2e[0] = "";
-      totals1f[0] = "";
-      totals2f[0] = "";
-      totals1g[0] = "";
-      totals2g[0] = "";
-      totals1h[0] = "";
-      totals2h[0] = "";
-      totals1j[0] = "";
-      totals2j[0] = "";
-      totals1k[0] = "";
-      totals2k[0] = "";
 
      Object.entries(new_table5).forEach(([key]) => {
           row = new_table5[key];
           x1.push( dateParser(moment(row['datetime']).format('DD/MM/YYYY')) );
           y1.push( row[input1.property("value")] );
           y2.push( row[input2.property("value")] );
-          sub1a = y1[key] / parseFloat(Object.values(totals1)[0]);
+          sub1a = row[input1.property("value")] / parseFloat(Object.values(totals1)[0]);
           y1a.push( sub1a * 100 );
-          sub2a = y2[key] / parseFloat(Object.values(totals2)[0]);
+          sub2a = row[input2.property("value")] / parseFloat(Object.values(totals2)[0]);
           y2a.push( sub2a * 100);
           //sub1b = (row[input1.property("value")] / row[input2.property("value")]) - 1;
           //y1b.push( sub1b * 100 );
           //sub2b = (row[input2.property("value")] / row[input1.property("value")]) - 1;
           //y2b.push( sub2b * 100);
-          sub1b = (y1[key] / parseFloat(Object.values(totals1a)[0]));
+          sub1b = (row[input1.property("value")] / parseFloat(Object.values(totals1a)[0]));
           y1b.push( sub1b );
-          sub2b = (y2[key] / parseFloat(Object.values(totals2a)[0]));
+          sub2b = (row[input2.property("value")] / parseFloat(Object.values(totals2a)[0]));
           y2b.push( sub2b );
 //debugger;
-          acm1c += y1[key];
+          acm1c += row[input1.property("value")];
           y1c.push( acm1c );
-          acm2c += y2[key];
+          acm2c += row[input2.property("value")];
           y2c.push( acm2c );
-          sub1d += (y1[key] - y2[key]);
+          sub1d += (row[input1.property("value")] - row[input2.property("value")]);
           y1d.push( sub1d );
-//          sub1g = (row[input1.property("value")] - row[input2.property("value")]) / parseFloat(Object.values(totals3)[0]);
-//          y3.push( sub1g * 100);
-//          sub2g = (row[input2.property("value")] - row[input1.property("value")]) / parseFloat(Object.values(totals3a)[0]);
-//          y3a.push( sub2g * 100);
-          sub2d += (y2[key] - y1[key]);
+          sub1g = (row[input1.property("value")] - row[input2.property("value")]) / parseFloat(Object.values(totals3)[0]);
+          y3.push( sub1g );
+          sub2g = (row[input2.property("value")] - row[input1.property("value")]) / parseFloat(Object.values(totals3a)[0]);
+          y3a.push( sub2g );
+          sub2d += (row[input2.property("value")] - row[input1.property("value")]);
+          y2d.push( sub2d );
+          sub2d += (row[input1.property("value")] - row[input2.property("value")]);
           y2d.push( sub2d );
 
-          sub1e = (y1[key] + sub1e);
-          sub2e = (y2[key] + sub2e);
+          sub1e = (row[input1.property("value")] + sub1e);
+          sub2e = row[input2.property("value")]+sub2e ;
           
           if (acm1c == parseFloat(Object.values(totals1a)[0]) && acm2c == parseFloat(Object.values(totals2a)[0])){
             y1e.push( sub1e );
@@ -149,113 +145,63 @@ new_table5.forEach(function(item){
           for (var i = 0; i <= totals1b.length- 1; i++) {
             if(row['branch']==totals1b[i]){
               aux1=totals1c[i] ;
-              totals1c[i] =  aux1 + (y1[key] - y2[key]);
+              totals1c[i] =  aux1 + (row[input1.property("value")] - row[input2.property("value")]);
               break;
             }
             if (i == totals1b.length- 1) {
               totals1b.push(row['branch']);
-              sub1f=y1[key] - y2[key];
+              sub1f=row[input1.property("value")] - row[input2.property("value")]
               totals1c.push(sub1f);
               break;
-            }
-          }
+            }}
           
-          for (var j = 0; j <=  totals2b.length- 1; j++) {
-            if(row['branch']==totals2b[j]){
-              aux2 = totals2c[j];
-              totals2c[j] = aux2 + y2[key] - y1[key];
-              break;
-            }
-            if (j == totals2b.length- 1) {
-              totals2b.push(row['branch']);
-              sub2f= y2[key] - y1[key]
-              totals2c.push(sub2f);
-              break;
-            }}
-            if (acm1c == parseFloat(Object.values(totals1a)[0]) && acm2c == parseFloat(Object.values(totals2a)[0])){
-              y1e.push( sub1e );
-              y2e.push( sub2e );
-          }
+            for (var j = 0; j <=  totals2b.length- 1; j++) {
+              if(row['branch']==totals2b[j]){
+                aux2 = totals2c[j];
+                totals2c[j] = aux2 + row[input2.property("value")] - row[input1.property("value")];
+                break;
+              }
+              if (j == totals2b.length- 1) {
+                totals2b.push(row['branch']);
+                sub2f= row[input2.property("value")] - row[input1.property("value")]
+                totals2c.push(sub2f);
+                break;
+              }}
+              if (acm1c == parseFloat(Object.values(totals1a)[0]) && acm2c == parseFloat(Object.values(totals2a)[0])){
+                y1e.push( sub1e );
+                y2e.push( sub2e );
+              }
     
-          for (var i = 0; i <= totals1d.length- 1; i++) {
-            if(row['shift']==totals1d[i]){
-              aux3=totals1e[i] ;
-              totals1e[i] =  aux3 + (y1[key] - y2[key]);
-              break;
-            }
-            if (i == totals1d.length- 1) {
-              totals1d.push(row['shift']);
-              sub1f=y1[key] - y2[key];
-              totals1e.push(sub1f);
-              break;
-            }}
+              for (var i = 0; i <= totals1d.length- 1; i++) {
+                if(row['shift']==totals1d[i]){
+                  aux3=totals1e[i] ;
+                  totals1e[i] =  aux3 + (row[input1.property("value")] - row[input2.property("value")]);
+                  break;
+                }
+                if (i == totals1d.length- 1) {
+                  totals1d.push(row['shift']);
+                  sub1f=row[input1.property("value")] - row[input2.property("value")]
+                  totals1e.push(sub1f);
+                  break;
+                }}
               
-            for (var j = 0; j <=  totals2d.length- 1; j++) {
-              if(row['shift']==totals2d[j]){
-                aux2 = totals2e[j];
-                totals2e[j] = aux2 + y2[key] - y1[key];
-                break;
-            }
-              if (j == totals2d.length- 1) {
-                totals2d.push(row['shift']);
-                sub2f= y2[key] - y1[key]
-                totals2e.push(sub2f);
-                break;
-              }
-            }
+                for (var j = 0; j <=  totals2d.length- 1; j++) {
+                  if(row['shift']==totals2d[j]){
+                    aux2 = totals2e[j];
+                    totals2e[j] = aux2 + row[input2.property("value")] - row[input1.property("value")];
+                    break;
+                  }
+                  if (j == totals2d.length- 1) {
+                    totals2d.push(row['shift']);
+                    sub2f= row[input2.property("value")] - row[input1.property("value")]
+                    totals2e.push(sub2f);
+                    break;
+                  }}
     
-            for (var z = 0; z <= totals1f.length- 1; z++) {
-              //debugger
-              
-              if( String(x1[key]) == String(totals1f[z])){
-                aux4=totals1g[z] ;
-                totals1g[z] =  aux4 + (y1[key] - y2[key]);
-                break;
-              }
-              if (z == totals1f.length- 1) {
-                totals1f.push( x1[key]);
-                sub1h=y1[key] - y2[key];
-                totals1g.push(sub1h);
-                break;
-              }
-            }
 
 
-            for (var t = 0; t <= totals1j.length- 1; t++) {
-              //debugger
-              
-              if( String(x1[key]) == String(totals1j[t])){
-                aux5=totals1k[t] ;
-                totals1k[t] =  aux5 + (y2[key] - y1[key]);
-
-                break;
-              }
-              if (t == totals1j.length- 1) {
-                totals1j.push( x1[key]);
-                sub2h=y2[key] - y1[key];
-                totals1k.push(sub2h);
-
-                break;
-              }
-            }
+          
      });
-    
-     for (var a = 0; a <= totals1f.length- 1; a++) {
-      if (max1 >= totals1g[a]) {
-        max1=totals1g[a];
-      }
-
-      if (max2 >= totals1k[a]) {
-        max2=totals1k[a];
-      }
-     }
-
-     for (var a = 0; a <= totals1f.length- 1; a++) {
-       //Para Acumulados solo cambiar los totales por los max
-      totals1i.push(totals1g[a]/max1*100);
-      totals1l.push(totals1k[a]/max2*100);
-     }
-     debugger
 // Create the Traces
 var trace1 = {
   x: x1,
@@ -286,7 +232,7 @@ var trace2 = {
 var trace1a = {
   x: x1,
   y: y1a,
-  visible : "legendonly",
+
   mode: "markers",
   type: "scatter",
   name:  input1.property("value"),
@@ -299,7 +245,7 @@ var trace1a = {
 var trace2a = {
   x: x1,
   y: y2a,
-  visible : "legendonly",
+
   mode: "markers",
   type: "scatter",
   name:  input2.property("value"),
@@ -389,8 +335,8 @@ var trace2d = {
 };
 
 var trace1k = {
-  x: totals1f,
-  y: totals1i,
+  x: x1,
+  y: y3,
   visible : "legendonly",
   mode: "markers",
   type: "scatter",
@@ -402,8 +348,8 @@ var trace1k = {
 };
 
 var trace2k = {
-  x: totals1j,
-  y: totals1l,
+  x: x1,
+  y: y3a,
   visible : "legendonly",
   mode: "markers",
   type: "scatter",
@@ -414,33 +360,8 @@ var trace2k = {
   }
 };
 
-var trace1l = {
-  x: totals1f,
-  y: totals1g,
-  visible : "legendonly",
-  mode: "markers",
-  type: "scatter",
-  name: input1.property("value"),
-  marker: {
-    color: "orange",
-    symbol: "hexagram"
-  }
-};
-
-var trace2l = {
-  x: totals1j,
-  y: totals1k,
-  visible : "legendonly",
-  mode: "markers",
-  type: "scatter",
-  name: input2.property("value"),
-  marker: {
-    color: "#2077b4",
-    symbol: "diamond-x"
-  }
-};
 // Create the data array for the plot
-var data0 = [trace1, trace2, trace1c, trace2c, trace1d, trace2d, trace1l, trace2l];
+var data0 = [trace1, trace2, trace1c, trace2c, trace1d, trace2d];
 var data1 = [trace1a, trace2a, trace1b, trace2b, trace1k, trace2k];
 // Define the plot layout
 var layout = {
