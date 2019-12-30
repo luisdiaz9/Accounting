@@ -87,12 +87,12 @@ new_table5.forEach(function(item){
       var dateParser = d3.timeParse("%_d/%_m/%Y"); 
       totals1b[0] = "";
       totals2b[0] = 0;
-      totals1c[0] = 0;
-      totals2c[0] = 0;
+      totals1c[0] = "";
+      totals2c[0] = "";
       totals1d[0] = "";
       totals2d[0] = 0;
-      totals1e[0] = 0;
-      totals2e[0] = 0;
+      totals1e[0] = "";
+      totals2e[0] = "";
       totals1f[0] = "";
       totals2f[0] = 0;
       totals1g[0] = 0;
